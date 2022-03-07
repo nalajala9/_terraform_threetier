@@ -1,0 +1,17 @@
+- name: play
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes 
+      notify:
+        Start nginx
+  handlers:
+    - name: Start nginx
+      service:
+        name: nginx
+        start: started        
+
